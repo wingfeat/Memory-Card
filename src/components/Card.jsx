@@ -1,7 +1,7 @@
-export default function Card({ pokemon }) {
+export default function Card({ pokemon, handleClick }) {
   return (
-    <li key={pokemon.id}>
-      <button>
+    <li>
+      <button onClick={() => handleClick(pokemon.id)}>
         <p>{pokemon.name.toUpperCase()}</p>
         <img src={pokemon.img} alt={pokemon.name} />
       </button>

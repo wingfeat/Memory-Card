@@ -3,6 +3,9 @@ import Grid from "./components/Sections/Grid";
 
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [cardIds, setCardIds] = useState([]);
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -14,7 +17,8 @@ const App = () => {
             `https://pokeapi.co/api/v2/pokemon/${i}`,
           );
 
-          if (!response.ok) throw new Error("Vérifiez l'orthographe !");
+          if (!response.ok) throw new Error("Impossible de charger le Pokémon");
+
           const data = await response.json();
 
           pokemonArray.push({
@@ -32,7 +36,20 @@ const App = () => {
     fetchPokemons();
   }, []);
 
-  return <Grid pokemons={pokemons} />;
+  function handleClick(pokemonId) {
+    if (cardIds.includes(pokemonId)) {
+      setScore(0);
+      setCardIds([]);
+      return;
+    }
+
+    const newScore = score + 1;
+    setScore(newScore);
+    setBestScore(Math.max(newScore, bestScore));
+    setCardIds([...cardIds, pokemonId]);
+  }
+
+  return <Grid handleClick={handleClick} pokemons={pokemons} />;
 };
 
 export default App;
