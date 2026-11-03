@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Grid from "./components/Sections/Grid";
 
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -23,16 +24,7 @@ const App = () => {
     fetchPokemons();
   }, []);
 
-  const listedPokemons = pokemons.map((pokemon) => (
-    <ul key={pokemon.id}>
-      <li>{pokemon.name}</li>
-      <li>
-        <img src={pokemon.img} alt={pokemon.name} />
-      </li>
-    </ul>
-  ));
-
-  return <>{listedPokemons}</>;
+  return <Grid pokemons={pokemons} />;
 };
 
 export default App;
