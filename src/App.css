@@ -1,0 +1,177 @@
+/* ---------- Mise en page ---------- */
+.app {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ---------- En-tête ---------- */
+.app-header {
+  text-align: center;
+}
+
+.app-header h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* le petit trait rouge et blanc sous le titre, comme une Poké Ball */
+.app-header h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 6px;
+  margin: 10px auto 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--red) 50%, var(--ink) 50%);
+}
+
+.rules {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+/* ---------- Tableau des scores ---------- */
+.scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.score {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+}
+
+.score-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.score-value {
+  font-size: 1.4rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.score-best {
+  border-color: var(--yellow);
+  background: #fff8d6;
+}
+
+/* ---------- Grille de cartes ---------- */
+.grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.card-item {
+  min-width: 0;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px 14px;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(35, 36, 43, 0.06);
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--yellow);
+  box-shadow: 0 8px 18px rgba(35, 36, 43, 0.12);
+}
+
+.card:active {
+  transform: translateY(-1px);
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+.card-img {
+  width: 110px;
+  height: 110px;
+  /* les sprites font 96 px : on les agrandit sans les flouter */
+  image-rendering: pixelated;
+}
+
+.card-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Chargement et erreur ---------- */
+.status {
+  margin: 24px auto 0;
+  padding: 16px 24px;
+  max-width: 480px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.status-error {
+  color: var(--red-dark);
+  background: #fdecea;
+  border: 1px solid #f5c2bd;
+  border-radius: var(--radius);
+}
+
+/* ---------- Petits écrans ---------- */
+@media (max-width: 480px) {
+  .app {
+    padding-top: 28px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .card-img {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:hover,
+  .card:active {
+    transform: none;
+  }
+}

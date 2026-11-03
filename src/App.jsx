@@ -3,6 +3,7 @@ import Grid from "./components/Sections/Grid";
 import ScoreBoard from "./components/ScoreBoard";
 import shuffle from "./utils/shuffle";
 import ScreenError from "./components/Sections/ScreenError";
+import "./App.css";
 
 const App = () => {
   const [hasError, setHasError] = useState(false);
@@ -62,7 +63,14 @@ const App = () => {
   }
 
   return (
-    <>
+    <main className="app">
+      <header className="app-header">
+        <h1>Pokémon Memory</h1>
+        <p className="rules">
+          Click each Pokémon only once. The cards shuffle after every click!
+        </p>
+      </header>
+
       {!hasError ? (
         <>
           <ScoreBoard score={score} bestScore={bestScore} />
@@ -70,13 +78,15 @@ const App = () => {
           {!isLoading ? (
             <Grid handleClick={handleClick} pokemons={pokemons} />
           ) : (
-            <p>...Loading pokemons !</p>
+            <p className="status" role="status">
+              Loading Pokémon...
+            </p>
           )}
         </>
       ) : (
         <ScreenError />
       )}
-    </>
+    </main>
   );
 };
 

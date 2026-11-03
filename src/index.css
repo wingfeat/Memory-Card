@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f3f1ec;
+  --surface: #ffffff;
+  --ink: #23242b;
+  --muted: #6a6c78;
+  --line: #e2dfd7;
+  --red: #d7362b;
+  --red-dark: #b02a21;
+  --yellow: #ffcb05;
+  --radius: 14px;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}

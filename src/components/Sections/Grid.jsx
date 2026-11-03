@@ -5,5 +5,5 @@ export default function Grid({ pokemons, handleClick }) {
     <Card key={pokemon.id} pokemon={pokemon} handleClick={handleClick} />
   ));
 
-  return <ul>{listedPokemons}</ul>;
+  return <ul className="grid">{listedPokemons}</ul>;
 }
