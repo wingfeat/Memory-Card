@@ -1,11 +1,29 @@
-/* ---------- Mise en page ---------- */
+/* ---------- Mise en page ----------
+   L'application fait exactement la hauteur de l'écran : l'en-tête et les
+   scores prennent leur place, la grille prend tout le reste.
+   Si le contenu dépasse quand même (zoom, grande police), la page
+   défile normalement : c'est le défilement de secours. */
 .app {
-  max-width: 980px;
+  /* grille : 6 colonnes × 2 lignes par défaut, modifié plus bas selon l'écran */
+  --cols: 6;
+  --rows: 2;
+  --pad-x: 20px;
+  --gap: 16px;
+  /* largeur d'une carte, pour limiter sa hauteur sur les grands écrans */
+  --card-w: calc(
+    (min(100vw, 1200px) - 2 * var(--pad-x) - (var(--cols) - 1) * var(--gap)) /
+      var(--cols)
+  );
+
+  max-width: 1200px;
+  height: 100vh;
+  height: 100svh;
   margin: 0 auto;
-  padding: 40px 20px 64px;
+  padding: clamp(12px, 4svh, 40px) var(--pad-x);
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  justify-content: center;
+  gap: clamp(10px, 2.5svh, 24px);
 }
 
 /* ---------- En-tête ---------- */
@@ -14,7 +32,8 @@
 }
 
 .app-header h1 {
-  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  line-height: 1.1;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -25,13 +44,13 @@
   display: block;
   width: 64px;
   height: 6px;
-  margin: 10px auto 0;
+  margin: clamp(6px, 1.2svh, 10px) auto 0;
   border-radius: 99px;
   background: linear-gradient(90deg, var(--red) 50%, var(--ink) 50%);
 }
 
 .rules {
-  margin-top: 12px;
+  margin-top: clamp(6px, 1.5svh, 12px);
   color: var(--muted);
 }
 
@@ -75,12 +94,22 @@
 .grid {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  gap: var(--gap);
+  /* prend toute la hauteur restante… */
+  flex: 1 1 auto;
+  min-height: 0;
+  /* …mais sans dépasser des cartes un peu plus hautes que larges :
+     sur un grand écran, la grille s'arrête et se centre */
+  max-height: calc(
+    var(--rows) * var(--card-w) * 1.25 + (var(--rows) - 1) * var(--gap)
+  );
 }
 
 .card-item {
   min-width: 0;
+  min-height: 0;
 }
 
 .card {
@@ -89,8 +118,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 16px 12px 14px;
+  padding: clamp(6px, 1.5svh, 16px) 8px;
   background: var(--surface);
   border: 2px solid var(--line);
   border-radius: var(--radius);
@@ -120,21 +150,30 @@
 }
 
 .card-img {
-  width: 110px;
-  height: 110px;
+  /* l'image remplit l'espace libre de la carte, sans se déformer */
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  max-width: 140px;
+  object-fit: contain;
   /* les sprites font 96 px : on les agrandit sans les flouter */
   image-rendering: pixelated;
 }
 
 .card-name {
-  font-size: 0.85rem;
+  font-size: clamp(0.65rem, 1.6svh, 0.85rem);
   font-weight: 700;
   letter-spacing: 0.08em;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ---------- Chargement et erreur ---------- */
+/* le chargement et l'écran de victoire se centrent dans l'espace de la grille */
 .status {
-  margin: 24px auto 0;
+  margin: auto;
   padding: 16px 24px;
   max-width: 480px;
   text-align: center;
@@ -150,8 +189,8 @@
 
 /* ---------- Écran de victoire ---------- */
 .winner {
-  margin: 8px auto 0;
-  padding: 36px 28px 32px;
+  margin: auto;
+  padding: clamp(20px, 4svh, 36px) 28px clamp(18px, 3.5svh, 32px);
   max-width: 480px;
   display: flex;
   flex-direction: column;
@@ -231,20 +270,77 @@
   outline-offset: 3px;
 }
 
-/* ---------- Petits écrans ---------- */
+/* ---------- Tablettes : 4 × 3 ---------- */
+@media (max-width: 767px) {
+  .app {
+    --cols: 4;
+    --rows: 3;
+    --gap: 12px;
+  }
+}
+
+/* ---------- Téléphones en portrait : 3 × 4 ---------- */
 @media (max-width: 480px) {
   .app {
-    padding-top: 28px;
+    --cols: 3;
+    --rows: 4;
+    --pad-x: 16px;
+    --gap: 8px;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+  /* les règles restent, mais en plus compact */
+  .rules {
+    font-size: 0.8rem;
+    line-height: 1.3;
   }
 
-  .card-img {
-    width: 88px;
-    height: 88px;
+  .score {
+    gap: 8px;
+    padding: 6px 14px;
+  }
+
+  .score-label {
+    font-size: 0.7rem;
+  }
+
+  .score-value {
+    font-size: 1.15rem;
+  }
+
+  .card {
+    gap: 2px;
+    border-radius: 10px;
+  }
+}
+
+/* ---------- Téléphones en paysage : 6 × 2, en-tête resserré ---------- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .app {
+    --cols: 6;
+    --rows: 2;
+    --gap: 8px;
+  }
+
+  .app-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .app-header h1::after {
+    display: none;
+  }
+
+  .rules {
+    margin-top: 2px;
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .score {
+    padding: 4px 14px;
+  }
+
+  .score-value {
+    font-size: 1.1rem;
   }
 }
 

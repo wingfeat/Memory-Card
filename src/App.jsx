@@ -10,7 +10,7 @@ const App = () => {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [pokemons, setPokemons] = useState([]);
-  const [score, setScore] = useState(12);
+  const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [cardIds, setCardIds] = useState([]);
 
