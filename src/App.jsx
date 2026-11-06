@@ -3,13 +3,14 @@ import Grid from "./components/Sections/Grid";
 import ScoreBoard from "./components/ScoreBoard";
 import shuffle from "./utils/shuffle";
 import ScreenError from "./components/Sections/ScreenError";
+import WinnerScreen from "./components/WinnerScreen";
 import "./App.css";
 
 const App = () => {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [pokemons, setPokemons] = useState([]);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(12);
   const [bestScore, setBestScore] = useState(0);
   const [cardIds, setCardIds] = useState([]);
 
@@ -68,6 +69,19 @@ const App = () => {
     setCardIds([]);
   }
 
+  let content;
+  if (isLoading) {
+    content = (
+      <p className="status" role="status">
+        Loading Pokémon...
+      </p>
+    );
+  } else if (score === pokemons.length) {
+    content = <WinnerScreen handleReplay={handleReplay} />;
+  } else {
+    content = <Grid handleClick={handleClick} pokemons={pokemons} />;
+  }
+
   return (
     <main className="app">
       <header className="app-header">
@@ -80,13 +94,7 @@ const App = () => {
       {!hasError ? (
         <>
           <ScoreBoard score={score} bestScore={bestScore} />
-          <Grid
-            handleClick={handleClick}
-            pokemons={pokemons}
-            isLoading={isLoading}
-            score={score}
-            handleReplay={handleReplay}
-          />
+          {content}
         </>
       ) : (
         <ScreenError />
