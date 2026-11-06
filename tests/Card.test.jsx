@@ -5,8 +5,8 @@ import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 
 it("Vérifie que la fonction handleClick est appelée sur une carte", async () => {
-  const fakePokemon = { id: 1, name: "bulbasaur", img: "bulbasaur.png" };
   const handleClick = vi.fn();
+  const fakePokemon = { id: 1, name: "bulbasaur", img: "bulbasaur.png" };
 
   render(<Card pokemon={fakePokemon} handleClick={handleClick} />);
 

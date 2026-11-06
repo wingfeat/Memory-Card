@@ -62,6 +62,12 @@ const App = () => {
     setCardIds([...cardIds, pokemonId]);
   }
 
+  function handleReplay() {
+    setPokemons(shuffle(pokemons));
+    setScore(0);
+    setCardIds([]);
+  }
+
   return (
     <main className="app">
       <header className="app-header">
@@ -74,14 +80,13 @@ const App = () => {
       {!hasError ? (
         <>
           <ScoreBoard score={score} bestScore={bestScore} />
-
-          {!isLoading ? (
-            <Grid handleClick={handleClick} pokemons={pokemons} />
-          ) : (
-            <p className="status" role="status">
-              Loading Pokémon...
-            </p>
-          )}
+          <Grid
+            handleClick={handleClick}
+            pokemons={pokemons}
+            isLoading={isLoading}
+            score={score}
+            handleReplay={handleReplay}
+          />
         </>
       ) : (
         <ScreenError />
