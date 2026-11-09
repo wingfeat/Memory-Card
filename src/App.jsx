@@ -4,7 +4,7 @@ import ScoreBoard from "./components/ScoreBoard";
 import shuffle from "./utils/shuffle.js";
 import ScreenError from "./components/Sections/ScreenError";
 import WinnerScreen from "./components/WinnerScreen";
-import fetchPokemon from "./api/fetchPokemon.js";
+import getRandomPokemons from "./api/getRandomPokemons.js";
 import "./App.css";
 
 const POKEMON_COUNT = 151;
@@ -19,19 +19,10 @@ const App = () => {
   const [cardIds, setCardIds] = useState([]);
 
   useEffect(() => {
-    const numbers = [];
-
-    for (let i = 1; i <= POKEMON_COUNT; i++) {
-      numbers.push(i);
-    }
-
-    const randomNumbers = shuffle(numbers).slice(0, CARDS_COUNT);
-
-    const fetchPokemons = async () => {
+    const loadPokemons = async () => {
       try {
-        const promises = randomNumbers.map((number) => fetchPokemon(number));
-        const pokemonArray = await Promise.all(promises);
-        setPokemons(pokemonArray);
+        const newPokemons = await getRandomPokemons(POKEMON_COUNT, CARDS_COUNT);
+        setPokemons(newPokemons);
       } catch (error) {
         setHasError(true);
         console.log("Erreur :", error);
@@ -39,7 +30,7 @@ const App = () => {
         setIsLoading(false);
       }
     };
-    fetchPokemons();
+    loadPokemons();
   }, []);
 
   function handleClick(pokemonId) {
@@ -57,10 +48,20 @@ const App = () => {
     setCardIds([...cardIds, pokemonId]);
   }
 
-  function handleReplay() {
-    setPokemons(shuffle(pokemons));
+  async function handleReplay() {
+    setIsLoading(true);
     setScore(0);
     setCardIds([]);
+
+    try {
+      const newPokemons = await getRandomPokemons(POKEMON_COUNT, CARDS_COUNT);
+      setPokemons(newPokemons);
+    } catch (error) {
+      setHasError(true);
+      console.log("Erreur :", error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   let content;
@@ -71,7 +72,9 @@ const App = () => {
       </p>
     );
   } else if (score === pokemons.length) {
-    content = <WinnerScreen handleReplay={handleReplay} />;
+    content = (
+      <WinnerScreen setIsLoading={setIsLoading} handleReplay={handleReplay} />
+    );
   } else {
     content = <Grid handleClick={handleClick} pokemons={pokemons} />;
   }

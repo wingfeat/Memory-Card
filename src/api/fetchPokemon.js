@@ -1,4 +1,4 @@
-export default async function fetchPokemon(number) {
+export async function fetchPokemon(number) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${number}`);
 
   if (!response.ok) {
