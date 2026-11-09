@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import Grid from "./components/Sections/Grid";
 import ScoreBoard from "./components/ScoreBoard";
-import shuffle from "./utils/shuffle";
+import shuffle from "./utils/shuffle.js";
 import ScreenError from "./components/Sections/ScreenError";
 import WinnerScreen from "./components/WinnerScreen";
+import fetchPokemon from "./api/fetchPokemon.js";
 import "./App.css";
+
+const POKEMON_COUNT = 151;
+const CARDS_COUNT = 12;
 
 const App = () => {
   const [hasError, setHasError] = useState(false);
@@ -13,40 +17,21 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [cardIds, setCardIds] = useState([]);
-  const pokemonCount = 151;
-  const cardsCount = 12;
 
   useEffect(() => {
     const numbers = [];
 
-    for (let i = 1; i <= pokemonCount; i++) {
+    for (let i = 1; i <= POKEMON_COUNT; i++) {
       numbers.push(i);
     }
 
-    const randomNumbers = shuffle(numbers).slice(0, cardsCount);
-
-    const pokemonArray = [];
+    const randomNumbers = shuffle(numbers).slice(0, CARDS_COUNT);
 
     const fetchPokemons = async () => {
       try {
-        for (const number of randomNumbers) {
-          const response = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/${number}`,
-          );
-
-          if (!response.ok) {
-            throw new Error("Impossible de charger le Pokémon");
-          }
-
-          const data = await response.json();
-
-          pokemonArray.push({
-            id: data.id,
-            name: data.name,
-            img: data.sprites.front_default,
-          });
-        }
-        setPokemons(shuffle(pokemonArray));
+        const promises = randomNumbers.map((number) => fetchPokemon(number));
+        const pokemonArray = await Promise.all(promises);
+        setPokemons(pokemonArray);
       } catch (error) {
         setHasError(true);
         console.log("Erreur :", error);
@@ -54,7 +39,6 @@ const App = () => {
         setIsLoading(false);
       }
     };
-
     fetchPokemons();
   }, []);
 
