@@ -13,15 +13,25 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [cardIds, setCardIds] = useState([]);
+  const pokemonCount = 151;
+  const cardsCount = 12;
 
   useEffect(() => {
-    const fetchPokemons = async () => {
-      const pokemonArray = [];
+    const numbers = [];
 
+    for (let i = 1; i <= pokemonCount; i++) {
+      numbers.push(i);
+    }
+
+    const randomNumbers = shuffle(numbers).slice(0, cardsCount);
+
+    const pokemonArray = [];
+
+    const fetchPokemons = async () => {
       try {
-        for (let i = 1; i <= 12; i++) {
+        for (const number of randomNumbers) {
           const response = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/${i}`,
+            `https://pokeapi.co/api/v2/pokemon/${number}`,
           );
 
           if (!response.ok) {
