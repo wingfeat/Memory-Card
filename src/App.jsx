@@ -6,7 +6,6 @@ import ScreenError from "./components/Sections/ScreenError";
 import WinnerScreen from "./components/WinnerScreen";
 import getRandomPokemons from "./api/getRandomPokemons.js";
 import "./App.css";
-
 const POKEMON_COUNT = 151;
 const CARDS_COUNT = 12;
 
