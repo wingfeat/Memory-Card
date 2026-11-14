@@ -2,8 +2,14 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
-    primary: { main: "#ff9800" },
-    text: { secondary: "#6a6c78" },
+    primary: { main: "#d7362b", dark: "#b02a21" },
+    secondary: { main: "#ffcb05" },
+    text: { primary: "#23242b", secondary: "#6a6c78" },
+    background: { default: "#f3f1ec", paper: "#ffffff" },
+    divider: "#e2dfd7",
+  },
+  shape: {
+    borderRadius: 14,
   },
   typography: {
     fontFamily: ["system-ui", '"Segoe UI"', "Roboto", "sans-serif"].join(","),

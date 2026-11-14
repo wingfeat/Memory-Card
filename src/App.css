@@ -31,17 +31,6 @@
   text-align: center;
 }
 
-/* le petit trait rouge et blanc sous le titre, comme une Poké Ball */
-.app-header h1::after {
-  content: "";
-  display: block;
-  width: 64px;
-  height: 6px;
-  margin: clamp(6px, 1.2svh, 10px) auto 0;
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--red) 50%, var(--ink) 50%);
-}
-
 /* ---------- Tableau des scores ---------- */
 .scoreboard {
   display: flex;
@@ -311,11 +300,6 @@
     --rows: 2;
     --gap: 8px;
   }
-
-  .app-header h1::after {
-    display: none;
-  }
-
   .score {
     padding: 4px 14px;
   }
