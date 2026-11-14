@@ -13,6 +13,10 @@ const theme = createTheme({
       fontWeight: 800,
       letterSpacing: "-0.02em",
     },
+    body1: {
+      fontSize: "clamp(0.8rem, 0.8rem + 0.5vw, 1rem)",
+      lineHeight: 1.5,
+    },
   },
 });
 
