@@ -12,6 +12,9 @@ const theme = createTheme({
       lineHeight: 1.1,
       fontWeight: 800,
       letterSpacing: "-0.02em",
+      "@media (max-height: 500px) and (orientation: landscape)": {
+        fontSize: "1.4rem",
+      },
     },
     body1: {
       fontSize: "clamp(0.8rem, 0.8rem + 0.5vw, 1rem)",
