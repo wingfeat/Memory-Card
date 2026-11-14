@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import Grid from "./components/Sections/Grid";
 import ScoreBoard from "./components/ScoreBoard";
@@ -6,6 +7,7 @@ import ScreenError from "./components/Sections/ScreenError";
 import WinnerScreen from "./components/WinnerScreen";
 import getRandomPokemons from "./api/getRandomPokemons.js";
 import "./App.css";
+
 const POKEMON_COUNT = 151;
 const CARDS_COUNT = 12;
 
@@ -73,10 +75,16 @@ const App = () => {
   return (
     <main className="app">
       <header className="app-header">
-        <h1>Pokémon Memory</h1>
-        <p className="rules">
+        <Typography variant="h1">Pokémon Memory</Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            marginTop: "clamp(6px, 1.5svh, 12px)",
+            color: "text.secondary",
+          }}
+        >
           Click each Pokémon only once. The cards shuffle after every click!
-        </p>
+        </Typography>
       </header>
 
       {!hasError ? (

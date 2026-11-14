@@ -31,13 +31,6 @@
   text-align: center;
 }
 
-.app-header h1 {
-  font-size: clamp(1.6rem, 5vw, 2.8rem);
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
 /* le petit trait rouge et blanc sous le titre, comme une Poké Ball */
 .app-header h1::after {
   content: "";
@@ -47,11 +40,6 @@
   margin: clamp(6px, 1.2svh, 10px) auto 0;
   border-radius: 99px;
   background: linear-gradient(90deg, var(--red) 50%, var(--ink) 50%);
-}
-
-.rules {
-  margin-top: clamp(6px, 1.5svh, 12px);
-  color: var(--muted);
 }
 
 /* ---------- Tableau des scores ---------- */
