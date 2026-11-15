@@ -27,6 +27,34 @@ const theme = createTheme({
       lineHeight: 1.5,
     },
   },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: "contained",
+        disableElevation: true,
+      },
+      styleOverrides: {
+        root: ({ theme }) => ({
+          padding: "10px 28px",
+          font: "inherit",
+          fontWeight: "700",
+          borderRadius: "99px",
+          textTransform: "none",
+          transition: "background 0.15s ease, transform 0.15s ease",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            "@media (prefers-reduced-motion: reduce)": {
+              transform: "none",
+            },
+          },
+          "&:focus-visible": {
+            outline: `3px solid ${theme.palette.secondary.main}`,
+            outlineOffset: "3px",
+          },
+        }),
+      },
+    },
+  },
 });
 
 export default theme;

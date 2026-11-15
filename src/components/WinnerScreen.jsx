@@ -1,3 +1,5 @@
+import { Button } from "@mui/material";
+
 export default function WinnerScreen({ handleReplay }) {
   return (
     <div className="winner" role="status">
@@ -6,9 +8,7 @@ export default function WinnerScreen({ handleReplay }) {
       <p className="winner-text">
         You found every Pokémon without clicking the same one twice.
       </p>
-      <button className="btn-replay" onClick={handleReplay}>
-        Replay
-      </button>
+      <Button onClick={handleReplay}>Replay</Button>
     </div>
   );
 }
