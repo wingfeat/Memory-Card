@@ -22,6 +22,11 @@ const theme = createTheme({
         fontSize: "1.4rem",
       },
     },
+    h2: {
+      fontSize: "clamp(1.4rem, 4.5vw, 2.6rem)",
+      fontWeight: 800,
+      letterSpacing: "-0.01em",
+    },
     body1: {
       fontSize: "clamp(0.8rem, 0.8rem + 0.5vw, 1rem)",
       lineHeight: 1.5,

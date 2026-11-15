@@ -221,12 +221,6 @@
   }
 }
 
-.winner-title {
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-
 .winner-text {
   color: var(--muted);
 }
