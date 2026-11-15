@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: { main: "#d7362b", dark: "#b02a21" },
-    secondary: { main: "#ffcb05" },
+    secondary: { main: "#ffcb05", light: "#fff8d6" },
     text: { primary: "#23242b", secondary: "#6a6c78" },
     background: { default: "#f3f1ec", paper: "#ffffff" },
     divider: "#e2dfd7",
@@ -23,7 +23,7 @@ const theme = createTheme({
       },
     },
     h2: {
-      fontSize: "clamp(1.4rem, 4.5vw, 2.6rem)",
+      fontSize: "1.6rem",
       fontWeight: 800,
       letterSpacing: "-0.01em",
     },

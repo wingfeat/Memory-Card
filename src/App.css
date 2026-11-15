@@ -31,24 +31,6 @@
   text-align: center;
 }
 
-/* ---------- Tableau des scores ---------- */
-.scoreboard {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-}
-
-.score {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 10px 20px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 99px;
-}
-
 .score-label {
   font-size: 0.8rem;
   font-weight: 600;
@@ -60,11 +42,6 @@
 .score-value {
   font-size: 1.4rem;
   font-variant-numeric: tabular-nums;
-}
-
-.score-best {
-  border-color: var(--yellow);
-  background: #fff8d6;
 }
 
 /* ---------- Grille de cartes ---------- */
@@ -219,10 +196,6 @@
   75% {
     transform: rotate(14deg);
   }
-}
-
-.winner-text {
-  color: var(--muted);
 }
 
 /* ---------- Tablettes : 4 × 3 ---------- */
