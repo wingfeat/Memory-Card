@@ -1,5 +1,10 @@
 import { createTheme } from "@mui/material/styles";
 
+const defaultTheme = createTheme();
+const SHADOWS = [...defaultTheme.shadows];
+SHADOWS[1] = "0 2px 6px rgba(35, 36, 43, 0.06)";
+SHADOWS[8] = "0 8px 18px rgba(35, 36, 43, 0.12)";
+
 const theme = createTheme({
   palette: {
     primary: { main: "#d7362b", dark: "#b02a21" },
@@ -12,6 +17,7 @@ const theme = createTheme({
     borderRadius: 14,
     borderPill: "99px",
   },
+  shadows: SHADOWS,
   typography: {
     fontFamily: ["system-ui", '"Segoe UI"', "Roboto", "sans-serif"].join(","),
     h1: {
@@ -67,13 +73,13 @@ const theme = createTheme({
       styleOverrides: {
         root: ({ theme }) => ({
           border: `2px solid ${theme.palette.divider}`,
-          boxShadow: "0 2px 6px rgba(35, 36, 43, 0.06)",
+          boxShadow: theme.shadows[1],
           transition:
             "transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease",
           "&:hover": {
             transform: "translateY(-4px)",
             borderColor: theme.palette.secondary.main,
-            boxShadow: "0 8px 18px rgba(35, 36, 43, 0.12)",
+            boxShadow: theme.shadows[8],
             "@media (prefers-reduced-motion: reduce)": {
               transform: "none",
             },
