@@ -4,6 +4,7 @@ const TAG_STYLE = {
   display: "flex",
   alignItems: "center",
   padding: { xs: "6px 14px", sm: "10px 20px" },
+  margin: 0,
   gap: { xs: 1, sm: 2 },
   borderRadius: "99px",
   "@media (max-height: 500px) and (orientation: landscape)": {
