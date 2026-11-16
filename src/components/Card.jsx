@@ -8,8 +8,19 @@ import {
 
 export default function Card({ pokemon, handleClick }) {
   return (
-    <Box component="li" sx={{ minWidth: 0, minHeight: 0 }}>
-      <MuiCard sx={{ width: "100%", height: "100%" }}>
+    <Box
+      component="li"
+      sx={{
+        minWidth: 0,
+        minHeight: 0,
+      }}
+    >
+      <MuiCard
+        sx={{
+          width: "100%",
+          height: "100%",
+        }}
+      >
         <CardActionArea
           onClick={() => handleClick(pokemon.id)}
           sx={{

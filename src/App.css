@@ -4,17 +4,8 @@
    Si le contenu dépasse quand même (zoom, grande police), la page
    défile normalement : c'est le défilement de secours. */
 .app {
-  /* grille : 6 colonnes × 2 lignes par défaut, modifié plus bas selon l'écran */
-  --cols: 6;
-  --rows: 2;
+  /* marge latérale, réduite sur téléphone ; la grille l'utilise aussi */
   --pad-x: 20px;
-  --gap: 16px;
-  /* largeur d'une carte, pour limiter sa hauteur sur les grands écrans */
-  --card-w: calc(
-    (min(100vw, 1200px) - 2 * var(--pad-x) - (var(--cols) - 1) * var(--gap)) /
-      var(--cols)
-  );
-
   max-width: 1200px;
   height: 100vh;
   height: 100svh;
@@ -105,31 +96,10 @@
   }
 }
 
-/* ---------- Tablettes : 4 × 3 ---------- */
-@media (max-width: 767px) {
-  .app {
-    --cols: 4;
-    --rows: 3;
-    --gap: 12px;
-  }
-}
-
-/* ---------- Téléphones en portrait : 3 × 4 ---------- */
+/* ---------- Téléphones en portrait ---------- */
 @media (max-width: 480px) {
   .app {
-    --cols: 3;
-    --rows: 4;
     --pad-x: 16px;
-    --gap: 8px;
-  }
-}
-
-/* ---------- Téléphones en paysage : 6 × 2, en-tête resserré ---------- */
-@media (max-height: 500px) and (orientation: landscape) {
-  .app {
-    --cols: 6;
-    --rows: 2;
-    --gap: 8px;
   }
 }
 
