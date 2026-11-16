@@ -59,6 +59,28 @@ const theme = createTheme({
         }),
       },
     },
+    MuiCard: {
+      defaultProps: {
+        variant: "outlined",
+      },
+      styleOverrides: {
+        root: ({ theme }) => ({
+          background: theme.palette.background.paper,
+          border: `2px solid ${theme.palette.divider}`,
+          boxShadow: "0 2px 6px rgba(35, 36, 43, 0.06)",
+          transition:
+            "transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease",
+          "&:hover": {
+            transform: "translateY(-4px)",
+            borderColor: theme.palette.secondary.main,
+            boxShadow: "0 8px 18px rgba(35, 36, 43, 0.12)",
+            "@media (prefers-reduced-motion: reduce)": {
+              transform: "none",
+            },
+          },
+        }),
+      },
+    },
   },
 });
 
