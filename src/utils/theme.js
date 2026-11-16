@@ -38,6 +38,12 @@ const theme = createTheme({
       fontSize: "clamp(0.8rem, 0.8rem + 0.5vw, 1rem)",
       lineHeight: 1.5,
     },
+    cardName: {
+      fontSize: "clamp(0.65rem, 1.6svh, 0.85rem)",
+      textTransform: "uppercase",
+      fontWeight: 700,
+      letterSpacing: "0.08em",
+    },
   },
   components: {
     MuiButton: {
@@ -92,6 +98,13 @@ const theme = createTheme({
             },
           },
         }),
+      },
+    },
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          cardName: "p",
+        },
       },
     },
   },

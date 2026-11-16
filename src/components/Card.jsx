@@ -58,13 +58,9 @@ export default function Card({ pokemon, handleClick }) {
             }}
           />
           <Typography
-            component="p"
+            variant="cardName"
             noWrap
             sx={{
-              fontSize: "clamp(0.65rem, 1.6svh, 0.85rem)",
-              textTransform: "uppercase",
-              fontWeight: 700,
-              letterSpacing: "0.08em",
               maxWidth: "100%",
               flexShrink: 0,
             }}
