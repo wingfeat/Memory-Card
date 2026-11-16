@@ -19,7 +19,7 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [cardIds, setCardIds] = useState([]);
-  const [newGame, setnewGame] = useState(1);
+  const [gameNumber, setGameNumber] = useState(1);
 
   useEffect(() => {
     const loadPokemons = async () => {
@@ -28,13 +28,13 @@ const App = () => {
         setPokemons(newPokemons);
       } catch (error) {
         setHasError(true);
-        console.log("Erreur :", error);
+        console.error("Error:", error);
       } finally {
         setIsLoading(false);
       }
     };
     loadPokemons();
-  }, [newGame]);
+  }, [gameNumber]);
 
   function handleClick(pokemonId) {
     setPokemons(shuffle(pokemons));
@@ -51,11 +51,11 @@ const App = () => {
     setCardIds([...cardIds, pokemonId]);
   }
 
-  async function handleReplay() {
+  function handleReplay() {
     setIsLoading(true);
     setScore(0);
     setCardIds([]);
-    setnewGame(newGame + 1);
+    setGameNumber(gameNumber + 1);
   }
 
   let content;
