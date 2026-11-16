@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import Grid from "./components/Sections/Grid";
 import ScoreBoard from "./components/ScoreBoard";
@@ -7,7 +7,7 @@ import ScreenError from "./components/Sections/ScreenError";
 import WinnerScreen from "./components/WinnerScreen";
 import getRandomPokemons from "./api/getRandomPokemons.js";
 import "./App.css";
-import { STATUS_STYLE } from "./utils/style.js";
+import { APP_STYLE, STATUS_STYLE } from "./utils/style.js";
 
 const POKEMON_COUNT = 151;
 const CARDS_COUNT = 12;
@@ -90,8 +90,8 @@ const App = () => {
   }
 
   return (
-    <main className="app">
-      <header className="app-header">
+    <Stack component="main" sx={APP_STYLE}>
+      <Box component="header" sx={{ textAlign: "center" }}>
         <Typography variant="h1" sx={H1_AFTER}>
           Pokémon Memory
         </Typography>
@@ -104,7 +104,7 @@ const App = () => {
         >
           Click each Pokémon only once. The cards shuffle after every click!
         </Typography>
-      </header>
+      </Box>
 
       {!hasError ? (
         <>
@@ -114,7 +114,7 @@ const App = () => {
       ) : (
         <ScreenError />
       )}
-    </main>
+    </Stack>
   );
 };
 
