@@ -1,6 +1,6 @@
 import { Paper, Typography } from "@mui/material";
 
-const PAPER = {
+const TAG_STYLE = {
   display: "flex",
   alignItems: "center",
   padding: { xs: "6px 14px", sm: "10px 20px" },
@@ -13,7 +13,12 @@ const PAPER = {
 
 export default function ScoreTag({ text, score, sx, ...rest }) {
   return (
-    <Paper variant="outlined" component="p" sx={{ ...PAPER, ...sx }} {...rest}>
+    <Paper
+      variant="outlined"
+      component="p"
+      sx={{ ...TAG_STYLE, ...sx }}
+      {...rest}
+    >
       <Typography
         variant="overline"
         sx={{

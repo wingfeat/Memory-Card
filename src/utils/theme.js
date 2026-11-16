@@ -65,7 +65,6 @@ const theme = createTheme({
       },
       styleOverrides: {
         root: ({ theme }) => ({
-          background: theme.palette.background.paper,
           border: `2px solid ${theme.palette.divider}`,
           boxShadow: "0 2px 6px rgba(35, 36, 43, 0.06)",
           transition:
