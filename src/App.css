@@ -22,22 +22,6 @@
   text-align: center;
 }
 
-/* ---------- Écran de victoire ---------- */
-.winner {
-  margin: auto;
-  padding: clamp(20px, 4svh, 36px) 28px clamp(18px, 3.5svh, 32px);
-  max-width: 480px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  text-align: center;
-  background: var(--surface);
-  border: 2px solid var(--yellow);
-  border-radius: var(--radius);
-  box-shadow: 0 8px 18px rgba(35, 36, 43, 0.12);
-}
-
 /* une Poké Ball dessinée en CSS : moitié rouge, bande noire, bouton blanc */
 .winner-ball {
   position: relative;
