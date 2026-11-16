@@ -19,8 +19,8 @@ describe("App", () => {
 
     render(<App />);
 
-    expect(await screen.findByText("BULBASAUR")).toBeInTheDocument();
-    expect(await screen.findByText("CHARMANDER")).toBeInTheDocument();
+    expect(await screen.findByText(/bulbasaur/i)).toBeInTheDocument();
+    expect(await screen.findByText(/charmander/i)).toBeInTheDocument();
   });
   it("shows the error screen when loading fails", async () => {
     getRandomPokemons.mockRejectedValue(new Error("Pas d'internet"));

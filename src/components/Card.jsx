@@ -3,11 +3,12 @@ import {
   CardActionArea,
   CardMedia,
   Typography,
+  Box,
 } from "@mui/material";
 
 export default function Card({ pokemon, handleClick }) {
   return (
-    <li className="card-item">
+    <Box component="li" sx={{ minWidth: 0, minHeight: 0 }}>
       <MuiCard sx={{ width: "100%", height: "100%" }}>
         <CardActionArea
           onClick={() => handleClick(pokemon.id)}
@@ -50,15 +51,17 @@ export default function Card({ pokemon, handleClick }) {
             noWrap
             sx={{
               fontSize: "clamp(0.65rem, 1.6svh, 0.85rem)",
+              textTransform: "uppercase",
               fontWeight: 700,
               letterSpacing: "0.08em",
               maxWidth: "100%",
+              flexShrink: 0,
             }}
           >
-            {pokemon.name.toUpperCase()}
+            {pokemon.name}
           </Typography>
         </CardActionArea>
       </MuiCard>
-    </li>
+    </Box>
   );
 }

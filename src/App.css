@@ -31,28 +31,6 @@
   text-align: center;
 }
 
-/* ---------- Grille de cartes ---------- */
-.grid {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
-  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
-  gap: var(--gap);
-  /* prend toute la hauteur restante… */
-  flex: 1 1 auto;
-  min-height: 0;
-  /* …mais sans dépasser des cartes un peu plus hautes que larges :
-     sur un grand écran, la grille s'arrête et se centre */
-  max-height: calc(
-    var(--rows) * var(--card-w) * 1.25 + (var(--rows) - 1) * var(--gap)
-  );
-}
-
-.card-item {
-  min-width: 0;
-  min-height: 0;
-}
-
 /* ---------- Chargement et erreur ---------- */
 /* le chargement et l'écran de victoire se centrent dans l'espace de la grille */
 .status {
