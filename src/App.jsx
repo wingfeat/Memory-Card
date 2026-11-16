@@ -84,9 +84,7 @@ const App = () => {
       </Typography>
     );
   } else if (score === pokemons.length) {
-    content = (
-      <WinnerScreen setIsLoading={setIsLoading} handleReplay={handleReplay} />
-    );
+    content = <WinnerScreen handleReplay={handleReplay} />;
   } else {
     content = <Grid handleClick={handleClick} pokemons={pokemons} />;
   }
