@@ -1,3 +1,5 @@
+import { LANDSCAPE_PHONE } from "./mediaQueries.js";
+
 export const APP_STYLE = {
   "--pad-x": { xs: "16px", sm: "20px" },
   maxWidth: "1200px",
@@ -27,7 +29,7 @@ export const TITLE_STYLE = {
     borderRadius: (theme) => theme.shape.borderPill,
     background: (theme) =>
       `linear-gradient(90deg, ${theme.palette.primary.main} 50%, ${theme.palette.text.primary} 50%)`,
-    "@media (max-height: 500px) and (orientation: landscape)": {
+    [LANDSCAPE_PHONE]: {
       display: "none",
     },
   },
@@ -50,7 +52,7 @@ export const GRID_STYLE = {
   minHeight: 0,
   maxHeight:
     "calc(var(--rows) * var(--card-w) * 1.25 + (var(--rows) - 1) * var(--gap))",
-  "@media (max-height: 500px) and (orientation: landscape)": {
+  [LANDSCAPE_PHONE]: {
     "--cols": 6,
     "--rows": 2,
     "--gap": "8px",

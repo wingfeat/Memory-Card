@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import { LANDSCAPE_PHONE } from "./mediaQueries.js";
 
 const defaultTheme = createTheme();
 const SHADOWS = [...defaultTheme.shadows];
@@ -25,7 +26,7 @@ const theme = createTheme({
       lineHeight: 1.1,
       fontWeight: 800,
       letterSpacing: "-0.02em",
-      "@media (max-height: 500px) and (orientation: landscape)": {
+      [LANDSCAPE_PHONE]: {
         fontSize: "1.4rem",
       },
     },

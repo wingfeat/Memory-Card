@@ -1,4 +1,5 @@
 import { Paper, Typography } from "@mui/material";
+import { LANDSCAPE_PHONE } from "../utils/mediaQueries.js";
 
 const TAG_STYLE = {
   display: "flex",
@@ -8,7 +9,7 @@ const TAG_STYLE = {
   m: 0,
   gap: { xs: 1, sm: 2 },
   borderRadius: (theme) => theme.shape.borderPill,
-  "@media (max-height: 500px) and (orientation: landscape)": {
+  [LANDSCAPE_PHONE]: {
     py: 0.5,
     px: 1.5,
   },
