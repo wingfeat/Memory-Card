@@ -7,6 +7,7 @@ import ScreenError from "./components/Sections/ScreenError";
 import WinnerScreen from "./components/WinnerScreen";
 import getRandomPokemons from "./api/getRandomPokemons.js";
 import "./App.css";
+import { STATUS_STYLE } from "./utils/style.js";
 
 const POKEMON_COUNT = 151;
 const CARDS_COUNT = 12;
@@ -75,9 +76,12 @@ const App = () => {
   let content;
   if (isLoading) {
     content = (
-      <p className="status" role="status">
+      <Typography
+        role="status"
+        sx={{ ...STATUS_STYLE, color: "text.secondary" }}
+      >
         Loading Pokémon...
-      </p>
+      </Typography>
     );
   } else if (score === pokemons.length) {
     content = (

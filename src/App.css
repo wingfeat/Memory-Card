@@ -22,23 +22,6 @@
   text-align: center;
 }
 
-/* ---------- Chargement et erreur ---------- */
-/* le chargement et l'écran de victoire se centrent dans l'espace de la grille */
-.status {
-  margin: auto;
-  padding: 16px 24px;
-  max-width: 480px;
-  text-align: center;
-  color: var(--muted);
-}
-
-.status-error {
-  color: var(--red-dark);
-  background: #fdecea;
-  border: 1px solid #f5c2bd;
-  border-radius: var(--radius);
-}
-
 /* ---------- Écran de victoire ---------- */
 .winner {
   margin: auto;
