@@ -3,12 +3,14 @@ import { Paper, Typography } from "@mui/material";
 const TAG_STYLE = {
   display: "flex",
   alignItems: "center",
-  padding: { xs: "6px 14px", sm: "10px 20px" },
-  margin: 0,
+  py: { xs: 0.5, sm: 1 },
+  px: { xs: 1.5, sm: 2.5 },
+  m: 0,
   gap: { xs: 1, sm: 2 },
   borderRadius: "99px",
   "@media (max-height: 500px) and (orientation: landscape)": {
-    padding: "4px 14px",
+    py: 0.5,
+    px: 1.5,
   },
 };
 

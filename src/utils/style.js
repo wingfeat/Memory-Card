@@ -2,15 +2,17 @@ export const APP_STYLE = {
   "--pad-x": { xs: "16px", sm: "20px" },
   maxWidth: "1200px",
   height: "100svh",
-  margin: "0 auto",
+  my: 0,
+  mx: "auto",
   padding: "clamp(12px, 4svh, 40px) var(--pad-x)",
   justifyContent: "center",
   gap: "clamp(10px, 2.5svh, 24px)",
 };
 
 export const STATUS_STYLE = {
-  margin: "auto",
-  padding: "16px 24px",
+  m: "auto",
+  py: 2,
+  px: 3,
   maxWidth: "480px",
   textAlign: "center",
 };
@@ -38,8 +40,8 @@ export const GRID_STYLE = {
   "--card-w":
     "calc((min(100vw, 1200px) - 2 * var(--pad-x) - (var(--cols) - 1) * var(--gap)) /var(--cols))",
   listStyle: "none",
-  margin: 0,
-  padding: 0,
+  m: 0,
+  p: 0,
   display: "grid",
   gridTemplateColumns: "repeat(var(--cols), minmax(0, 1fr))",
   gridTemplateRows: "repeat(var(--rows), minmax(0, 1fr))",
