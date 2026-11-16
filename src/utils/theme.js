@@ -10,6 +10,7 @@ const theme = createTheme({
   },
   shape: {
     borderRadius: 14,
+    borderPill: "99px",
   },
   typography: {
     fontFamily: ["system-ui", '"Segoe UI"', "Roboto", "sans-serif"].join(","),
@@ -43,7 +44,7 @@ const theme = createTheme({
           padding: "10px 28px",
           font: "inherit",
           fontWeight: "700",
-          borderRadius: "99px",
+          borderRadius: theme.shape.borderPill,
           textTransform: "none",
           transition: "background 0.15s ease, transform 0.15s ease",
           "&:hover": {

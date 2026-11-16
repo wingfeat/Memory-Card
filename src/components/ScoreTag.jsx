@@ -7,7 +7,7 @@ const TAG_STYLE = {
   px: { xs: 1.5, sm: 2.5 },
   m: 0,
   gap: { xs: 1, sm: 2 },
-  borderRadius: "99px",
+  borderRadius: (theme) => theme.shape.borderPill,
   "@media (max-height: 500px) and (orientation: landscape)": {
     py: 0.5,
     px: 1.5,
