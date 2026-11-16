@@ -22,6 +22,7 @@ Click each Pokémon **only once**. Every click shuffles the cards: if you click 
 - [React](https://react.dev/)
 - [Vite](https://vite.dev/)
 - [PokéAPI](https://pokeapi.co/)
+- [Material UI](https://mui.com/material-ui/) for the components and the theme
 - [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ## Project structure
@@ -32,14 +33,18 @@ src/
 │   ├── fetchPokemon.js       ← fetches one Pokémon and returns { id, name, img }
 │   └── getRandomPokemons.js  ← draws random numbers and loads them with Promise.all
 ├── utils/
-│   └── shuffle.js            ← Fisher-Yates shuffle, returns a new array
+│   ├── shuffle.js            ← Fisher-Yates shuffle, returns a new array
+│   ├── theme.js              ← MUI theme: brand colors, typography, Button and Card styles
+│   └── style.js              ← sx style objects (layout, title, grid, status messages)
 ├── components/
 │   ├── ScoreBoard.jsx        ← current score and best score
+│   ├── ScoreTag.jsx          ← one score in a pill-shaped tag
 │   ├── Card.jsx              ← one Pokémon, reports the click
 │   ├── WinnerScreen.jsx      ← victory message and Replay button
 │   └── Sections/
 │       ├── Grid.jsx          ← the list of cards
 │       └── ScreenError.jsx   ← shown if the API cannot be reached
+├── App.css                   ← the animated Poké Ball of the winner screen
 └── App.jsx                   ← owns the state and decides what to display
 ```
 
@@ -51,6 +56,7 @@ All the state lives in `App`:
 | `score` / `bestScore` | numbers |
 | `cardIds` | the ids of the cards already clicked |
 | `isLoading` / `hasError` | booleans |
+| `gameNumber` | a counter increased by Replay, which makes the effect load new Pokémon |
 
 `App` chooses what to display: the loading message, the winner screen (when `score === pokemons.length`) or the grid. The data access lives in `api/`, so components never call `fetch` directly.
 
@@ -83,6 +89,13 @@ The API module is replaced with `vi.mock`, so the tests run without a network co
 - **Testing React components** with React Testing Library: finding elements by role, simulating clicks with `user-event`, waiting with `findBy`
 - **Mocking** with Vitest: `vi.fn()` for callbacks, `vi.mock()` for modules, `mockResolvedValue` and `mockRejectedValue` to simulate the API
 - **Responsive layout** with `svh` units and CSS custom properties
+- **Material UI**:
+  - a **theme** (`createTheme`) as the single source for colors, shape and typography, applied with `ThemeProvider` and `CssBaseline`
+  - **where to put a style**: the theme for every component of a type (`defaultProps`, `styleOverrides`), a shared constant for a repeated pattern, `sx` for a one-off or for layout
+  - layout components (`Stack`, `Box`, `Paper`) and the `component` prop to keep semantic HTML (`main`, `header`, `ul`, `li`)
+  - `Card`, `CardActionArea` and `CardMedia` for an accessible clickable card, `Alert` for the error message
+  - **mobile-first breakpoints** (`{ xs, sm, md }`), including on CSS custom properties, and custom media queries inside `sx`
+- **CSS details**: a CSS variable is only visible to the element and its descendants, `overflow: hidden` lets a flex item shrink below its content (fixed with `flex-shrink: 0`), and `text-transform` changes the display but not the text in the DOM
 
 ## Getting started
 
