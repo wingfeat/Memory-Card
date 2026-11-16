@@ -52,7 +52,12 @@ const theme = createTheme({
           fontWeight: "700",
           borderRadius: theme.shape.borderPill,
           textTransform: "none",
-          transition: "background 0.15s ease, transform 0.15s ease",
+          transition: theme.transitions.create(
+            ["transform", "background-color"],
+            {
+              duration: theme.transitions.duration.shortest,
+            },
+          ),
           "&:hover": {
             transform: "translateY(-2px)",
             "@media (prefers-reduced-motion: reduce)": {
@@ -74,8 +79,10 @@ const theme = createTheme({
         root: ({ theme }) => ({
           border: `2px solid ${theme.palette.divider}`,
           boxShadow: theme.shadows[1],
-          transition:
-            "transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease",
+          transition: theme.transitions.create(
+            ["transform", "border-color", "box-shadow"],
+            { duration: theme.transitions.duration.shortest },
+          ),
           "&:hover": {
             transform: "translateY(-4px)",
             borderColor: theme.palette.secondary.main,
