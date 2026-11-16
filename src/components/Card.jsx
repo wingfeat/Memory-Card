@@ -34,11 +34,27 @@ export default function Card({ pokemon, handleClick }) {
         >
           <CardMedia
             component="img"
-            className="card-img"
             src={pokemon.img}
             alt={pokemon.name}
+            sx={{
+              flex: "1 1 auto",
+              minHeight: 0,
+              width: "100%",
+              maxWidth: "140px",
+              objectFit: "contain",
+              imageRendering: "pixelated",
+            }}
           />
-          <Typography component="p" className="card-name">
+          <Typography
+            component="p"
+            noWrap
+            sx={{
+              fontSize: "clamp(0.65rem, 1.6svh, 0.85rem)",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              maxWidth: "100%",
+            }}
+          >
             {pokemon.name.toUpperCase()}
           </Typography>
         </CardActionArea>

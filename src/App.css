@@ -53,27 +53,6 @@
   min-height: 0;
 }
 
-.card-img {
-  /* l'image remplit l'espace libre de la carte, sans se déformer */
-  flex: 1 1 auto;
-  min-height: 0;
-  width: 100%;
-  max-width: 140px;
-  object-fit: contain;
-  /* les sprites font 96 px : on les agrandit sans les flouter */
-  image-rendering: pixelated;
-}
-
-.card-name {
-  font-size: clamp(0.65rem, 1.6svh, 0.85rem);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 /* ---------- Chargement et erreur ---------- */
 /* le chargement et l'écran de victoire se centrent dans l'espace de la grille */
 .status {
